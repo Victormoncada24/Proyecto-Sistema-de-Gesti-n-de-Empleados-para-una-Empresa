@@ -1,4 +1,4 @@
 class rol():
-    def __init__(self,id_rol,permisos):
-        self.id_rol = id_rol
+    def __init__(self,cod,permisos):
+        self.cod = cod
         self.permisos = permisos
