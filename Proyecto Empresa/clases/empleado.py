@@ -2,7 +2,7 @@ from datetime import datetime
 import tipo_empleado_empleado,tipo_empleado
 
 class empleado():
-    def __init__(self,id_empleado,nombre_empleado,fecha_contrato,salario,correo,telefono,direccion,id_tipo_empleado,id_tipo_empleado_emp,rut,fecha_nacimiento,password,id_rol):
+    def __init__(self,id_empleado,nombre_empleado,fecha_contrato,salario,correo,telefono,direccion,id_tipo_empleado,id_tipo_empleado_emp,rut,fecha_nacimiento,password,cod):
         self.id_empleado = id_empleado
         self.nombre_empleado = nombre_empleado
         self.fecha_contrato = fecha_contrato
@@ -15,7 +15,7 @@ class empleado():
         self.rut = rut
         self.fecha_nacimiento = fecha_nacimiento
         self.password = password
-        self.id_rol = id_rol
+        self.cod = cod
 
     def validar_datos():
         pass
