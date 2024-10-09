@@ -1,3 +1,4 @@
+from datetime import datetime 
 import tipo_empleado_empleado,tipo_empleado
 
 class empleado():
@@ -21,6 +22,15 @@ class empleado():
 
     def validar_edad():
         pass
+#        hoy = datetime.now()
+#        edad = hoy.year - self.fecha_nac.year - ((hoy.month, hoy.day) < (self.fecha_nac.month, self.fecha_nac.day))
+
+#        if edad >= 18:
+#            print(f"El empleado {self.nombre} tiene {edad} años y es mayor de edad.")
+#            return True
+#        else:
+#            print(f"El empleado {self.nombre} tiene {edad} años y es menor de edad.")
+#            return False
 
     def habilitar_modulos():
         pass    
@@ -30,4 +40,3 @@ class empleado():
 
     def desencriptar_password():
         pass
-    
