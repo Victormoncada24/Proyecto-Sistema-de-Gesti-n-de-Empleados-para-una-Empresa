@@ -15,3 +15,19 @@ class empleado():
         self.fecha_nacimiento = fecha_nacimiento
         self.password = password
         self.id_rol = id_rol
+
+    def validar_datos():
+        pass
+
+    def validar_edad():
+        pass
+
+    def habilitar_modulos():
+        pass    
+
+    def encriptar_password():
+        pass
+
+    def desencriptar_password():
+        pass
+    
