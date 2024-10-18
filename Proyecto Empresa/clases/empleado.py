@@ -1,42 +1,21 @@
-from datetime import datetime 
-import tipo_empleado_empleado,tipo_empleado
-
-class empleado():
-    def __init__(self,id_empleado,nombre_empleado,fecha_contrato,salario,correo,telefono,direccion,id_tipo_empleado,id_tipo_empleado_emp,rut,fecha_nacimiento,password,cod):
-        self.id_empleado = id_empleado
-        self.nombre_empleado = nombre_empleado
-        self.fecha_contrato = fecha_contrato
-        self.salario = salario
+# empleado.py
+class Empleado:
+    def __init__(self, id, nombre, correo, salario, fecha_inicio):
+        self.id = id
+        self.nombre = nombre
         self.correo = correo
-        self.telefono = telefono
-        self.direccion = direccion
-        self.id_tipo_empleado = id_tipo_empleado
-        self.id_tipo_empleado_emp = id_tipo_empleado_emp
-        self.rut = rut
-        self.fecha_nacimiento = fecha_nacimiento
-        self.password = password
-        self.cod = cod
+        self.salario = salario
+        self.fecha_inicio = fecha_inicio
+        self.departamento = None
 
-    def validar_datos():
-        pass
+    def asignar_departamento(self, departamento):
+        self.departamento = departamento
 
-    def validar_edad():
-        pass
-#        hoy = datetime.now()
-#        edad = hoy.year - self.fecha_nac.year - ((hoy.month, hoy.day) < (self.fecha_nac.month, self.fecha_nac.day))
+    def mostrar_informacion(self):
+        return (f"ID: {self.id}, Nombre: {self.nombre}, Correo: {self.correo}, "
+                f"Salario: {self.salario}, Fecha de Inicio: {self.fecha_inicio}, "
+                f"Departamento: {self.departamento.nombre if self.departamento else 'Ninguno'}")
 
-#        if edad >= 18:
-#            print(f"El empleado {self.nombre} tiene {edad} años y es mayor de edad.")
-#            return True
-#        else:
-#            print(f"El empleado {self.nombre} tiene {edad} años y es menor de edad.")
-#            return False
-
-    def habilitar_modulos():
-        pass    
-
-    def encriptar_password():
-        pass
 
     def desencriptar_password():
         pass

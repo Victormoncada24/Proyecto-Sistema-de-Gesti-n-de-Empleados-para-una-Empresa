@@ -1,8 +1,18 @@
-class proyecto():
-    def __init__(self,id_proyecto,nombre_proyecto,descripcion_proyecto,fecha_inicio,fecha_termino):
-        self.id_proyecto = id_proyecto
-        self.nombre_proyecto = nombre_proyecto
-        self.descripcion_proyecto = descripcion_proyecto
+# proyecto.py
+class Proyecto:
+    def __init__(self, nombre, descripcion, fecha_inicio):
+        self.nombre = nombre
+        self.descripcion = descripcion
         self.fecha_inicio = fecha_inicio
-        self.fecha_termino = fecha_termino
-        
+        self.empleados_asignados = []
+
+    def asignar_empleado(self, empleado):
+        if empleado not in self.empleados_asignados:
+            self.empleados_asignados.append(empleado)
+
+    def desasignar_empleado(self, empleado):
+        if empleado in self.empleados_asignados:
+            self.empleados_asignados.remove(empleado)
+
+    def mostrar_empleados(self):
+        return [emp.nombre for emp in self.empleados_asignados]
