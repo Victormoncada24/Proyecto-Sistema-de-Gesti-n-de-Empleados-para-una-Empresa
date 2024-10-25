@@ -1,21 +1,51 @@
-# empleado.py
+from conexion import obtener_conexion
+
 class Empleado:
-    def __init__(self, id, nombre, correo, salario, fecha_inicio):
-        self.id = id
+    def _init_(self,id_empleado,nombre,direccion,telefono,email,salario,id_departamento):
+        self.id_empleado = id_empleado
         self.nombre = nombre
-        self.correo = correo
+        self.direccion = direccion
+        self.telefono = telefono
+        self.email = email
         self.salario = salario
-        self.fecha_inicio = fecha_inicio
-        self.departamento = None
+        self.id_departamento = id_departamento
 
-    def asignar_departamento(self, departamento):
-        self.departamento = departamento
+    def crear(self):
+        conexion = obtener_conexion()
+        cursor = conexion.cursor()
+        sql = """
+            INSERT INTO empleados (nombre, direccion, telefono, email, salario, id_departamento) 
+            VALUES (%s, %s, %s, %s, %s, %s)
+        """
+        cursor.execute(sql, (self.nombre, self.direccion, self.telefono, self.email, self.salario, self.id_departamento))
+        conexion.commit()
+        cursor.close()
+        conexion.close()
 
-    def mostrar_informacion(self):
-        return (f"ID: {self.id}, Nombre: {self.nombre}, Correo: {self.correo}, "
-                f"Salario: {self.salario}, Fecha de Inicio: {self.fecha_inicio}, "
-                f"Departamento: {self.departamento.nombre if self.departamento else 'Ninguno'}")
+    @staticmethod
+    def leer_todos():
+        conexion = obtener_conexion()
+        cursor = conexion.cursor()
+        cursor.execute("SELECT * FROM empleados")
+        empleados = cursor.fetchall()
+        cursor.close()
+        conexion.close()
+        return empleados
 
+    def actualizar(self):
+        conexion = obtener_conexion()
+        cursor = conexion.cursor()
+        sql = "UPDATE empleados SET nombre = %s, salario = %s WHERE id_empleado = %s"
+        cursor.execute(sql, (self.nombre, self.salario, self.id_empleado))
+        conexion.commit()
+        cursor.close()
+        conexion.close()
 
-    def desencriptar_password():
-        pass
+    def eliminar(self):
+        conexion = obtener_conexion()
+        cursor = conexion.cursor()
+        sql = "DELETE FROM empleados WHERE id_empleado = %s"
+        cursor.execute(sql, (self.id_empleado,))
+        conexion.commit()
+        cursor.close()
+        conexion.close()
