@@ -1,5 +1,7 @@
-from datetime import datetime 
-import tipo_empleado_empleado,tipo_empleado
+import mysql.connector
+from conn import DatabaseConnection
+
+db = DatabaseConnection()
 
 class Empleado:
     def __init__(self, id, nombre, fecha_contrato, salario, correo, telefono, direccion, id_tipo_empleado, rut, fecha_nac, password, id_rol, id_tipo):
@@ -67,4 +69,3 @@ class Empleado:
 
     def desencriptar_password():
         pass
-
