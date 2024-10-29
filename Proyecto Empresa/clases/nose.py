@@ -1,3 +1,5 @@
+#ejemplo para añadir
+
 nuevo_empleado = Empleado(
     id=None,  # El ID se puede dejar como None si es autoincremental en la base de datos
     nombre="Juan Morales",
@@ -21,3 +23,9 @@ nuevo_empleado.insertar(db)
 db.close()
 
 print("Empleado creado exitosamente.")
+
+# Ejemplo de uso del método eliminar
+empleado_id_a_eliminar = 2  # Cambia este valor por el ID del empleado que quieres eliminar
+
+Empleado.eliminar(db, empleado_id_a_eliminar)
+print(f"Empleado con ID {empleado_id_a_eliminar} eliminado.")    
