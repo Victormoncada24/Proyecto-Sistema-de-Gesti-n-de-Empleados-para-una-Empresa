@@ -7,9 +7,9 @@ def crear_conexion():
     try:
         conexion = mysql.connector.connect(
             host='localhost',
-            user='root',     # Cambia 'tu_usuario' por tu usuario de MySQL.
-            password='', # Cambia 'tu_contraseña' por tu contraseña.
-            database='empresa'     # Asegúrate de tener una base de datos llamada 'empresa'.
+            user='root',     
+            password='', 
+            database='empresa'    
         )
         if conexion.is_connected():
             print("Conexión exitosa a la base de datos.")
@@ -18,7 +18,7 @@ def crear_conexion():
         print(f"Error de conexión: {e}")
         return None
 
-# Función para crear la tabla de empleados si no existe.
+
 def crear_tabla(conexion):
     cursor = conexion.cursor()
     cursor.execute('''
