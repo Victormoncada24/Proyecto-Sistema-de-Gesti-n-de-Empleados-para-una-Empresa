@@ -1,10 +1,10 @@
 from conn import DatabaseConnection
 from empleado import Empleado
-from asignacion import Asignacion
-from departamento import Departamento
-from proyecto import Proyecto
-from registro_tiempo import RegistroTiempo
-from tipo_empleado import TipoEmpleado
+#from asignacion import Asignacion
+#from departamento import Departamento
+#from proyecto import Proyecto
+#from registro_tiempo import RegistroTiempo
+#from tipo_empleado import TipoEmpleado
 
 def menu():
     print("Seleccione una opción:")
