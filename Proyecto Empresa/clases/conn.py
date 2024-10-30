@@ -6,7 +6,7 @@ class DatabaseConnection:
             host="localhost",
             user="root",
             password="",
-            database="gestion_empleados2"
+            database="empresa"
         )
         self.cursor = self.connection.cursor()
 
