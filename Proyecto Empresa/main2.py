@@ -4,8 +4,6 @@ from clases.asignacion import Asignacion
 from clases.departamento import Departamento
 from clases.proyecto import Proyecto
 
-db = DatabaseConnection()
-
 # Funciones CRUD para cada tabla
 def crear_empleado(db):
     nombre = input("Nombre: ")
