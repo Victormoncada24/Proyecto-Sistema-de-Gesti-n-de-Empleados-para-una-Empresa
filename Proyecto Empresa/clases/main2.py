@@ -1,11 +1,10 @@
-from clases.empleado import Empleado
-from clases.tipo_empleado import TipoEmpleado
-from auxiliar.rol import Rol
-from clases.departamento import Departamento
-from clases.proyecto import Proyecto
-from clases.registro_tiempo import RegistroTiempo
-
-from clases.conn import DatabaseConnection
+from conn import DatabaseConnection
+from empleado import Empleado
+from tipo_empleado import TipoEmpleado
+from rol import Rol
+from departamento import Departamento
+from proyecto import Proyecto
+from registro_tiempo import RegistroTiempo
 
 db = DatabaseConnection()
 
