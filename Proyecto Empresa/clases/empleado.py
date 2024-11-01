@@ -1,7 +1,4 @@
 from conn import DatabaseConnection
-
-db = DatabaseConnection()
-
 class Empleado:
     def __init__(self, id, nombre, fecha_contrato, salario, correo, telefono, direccion, id_tipo_empleado, rut, fecha_nac, password, id_rol, id_tipo):
         self.id = id
