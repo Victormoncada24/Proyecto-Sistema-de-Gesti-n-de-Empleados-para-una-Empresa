@@ -1,7 +1,6 @@
 from conn import DatabaseConnection
 class Empleado:
-    def __init__(self, id, nombre, fecha_contrato, salario, correo, telefono, direccion, id_tipo_empleado, rut, fecha_nac, password, id_rol, id_tipo):
-        self.id = id
+    def __init__(self, nombre, fecha_contrato, salario, correo, telefono, direccion, id_tipo_empleado, rut, fecha_nac, password, id_rol, id_tipo):
         self.nombre = nombre
         self.fecha_contrato = fecha_contrato
         self.salario = salario
@@ -17,9 +16,9 @@ class Empleado:
 
     # Métodos CRUD
     def insertar(self, db):
-        query = """INSERT INTO Empleado (id,nombre, fecha_contrato, salario, correo, telefono, direccion, id_tipo_empleado, rut, fecha_nac, password, id_rol, id_tipo)
-                   VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
-        values = (self.id, self.nombre, self.fecha_contrato, self.salario, self.correo, self.telefono, self.direccion, self.id_tipo_empleado, self.rut, self.fecha_nac, self.password, self.id_rol, self.id_tipo)
+        query = """INSERT INTO Empleado (nombre, fecha_contrato, salario, correo, telefono, direccion, id_tipo_empleado, rut, fecha_nac, password, id_rol, id_tipo)
+                   VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
+        values = (self.nombre, self.fecha_contrato, self.salario, self.correo, self.telefono, self.direccion, self.id_tipo_empleado, self.rut, self.fecha_nac, self.password, self.id_rol, self.id_tipo)
         db.cursor.execute(query, values)
         db.commit()
 

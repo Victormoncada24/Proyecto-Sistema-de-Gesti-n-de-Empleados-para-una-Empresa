@@ -1,11 +1,13 @@
 from conn import DatabaseConnection
 from empleado import Empleado
-from asignacion import Asignacion
-from departamento import Departamento
-from proyecto import Proyecto
+#from asignacion import Asignacion
+#from departamento import Departamento
+#from proyecto import Proyecto
+
+db = DatabaseConnection
+
 
 # Funciones CRUD para cada tabla
-db = DatabaseConnection
 
 def crear_empleado():
     nombre = input("Nombre: ")
@@ -367,6 +369,7 @@ def submenu_registro_tiempo():
 
 # Menú principal
 def menu_principal():
+    db = DatabaseConnection
     while True:
         print("\n--- Menú Principal ---")
         print("1. Tabla Empleado")
