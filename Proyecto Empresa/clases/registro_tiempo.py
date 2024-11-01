@@ -1,3 +1,6 @@
+import mysql.connector
+from conn import DatabaseConnection
+
 class RegistroTiempo:
     def __init__(self, id, fecha, cantidad_horas, descripcion, dia_extraordinario, comentario):
         self.id = id

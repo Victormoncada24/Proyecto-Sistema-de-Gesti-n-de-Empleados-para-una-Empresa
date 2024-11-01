@@ -1,3 +1,6 @@
+import mysql.connector
+from conn import DatabaseConnection
+
 class Proyecto:
     def __init__(self, id, nombre, descripcion, fecha_inicio, fecha_plazo):
         self.id = id

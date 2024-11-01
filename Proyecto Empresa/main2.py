@@ -1,46 +1,66 @@
 from clases.conn import DatabaseConnection
 from clases.empleado import Empleado
-from clases.asignacion import Asignacion
-from clases.departamento import Departamento
-from clases.proyecto import Proyecto
+#from clases.asignacion import Asignacion
+#from clases.departamento import Departamento
+#from clases.proyecto import Proyecto
 
 # Funciones CRUD para cada tabla
-def crear_empleado(db):
+db = DatabaseConnection
+
+def crear_empleado():
     nombre = input("Nombre: ")
+    fecha_contrato = input("Fecha de contrato (YYYY-MM-DD): ")
     salario = float(input("Salario: "))
     correo = input("Correo: ")
     telefono = input("Teléfono: ")
     direccion = input("Dirección: ")
-    fecha_contrato = input("Fecha de contrato (YYYY-MM-DD): ")
-    sql = "INSERT INTO Empleado (nombre, salario, correo, telefono, direccion, fecha_contrato) VALUES (%s, %s, %s, %s, %s, %s)"
-    valores = (nombre, salario, correo, telefono, direccion, fecha_contrato)
-    cursor.execute(sql, valores)
-    conexion.commit()
-    print("Empleado creado con éxito.")
+    id_tipo_empleado = int(input("ID Tipo Empleado: "))
+    rut = input("RUT: ")
+    fecha_nac = input("Fecha de nacimiento (YYYY-MM-DD): ")
+    password = input("Contraseña: ")
+    id_rol = int(input("ID Rol: "))
+    id_tipo = int(input("ID Tipo: "))
+    
+    empleado = Empleado(id, nombre, fecha_contrato, salario, correo, telefono, direccion, id_tipo_empleado, rut, fecha_nac, password, id_rol, id_tipo)
+    empleado.insertar(db)
+    print("Empleado agregado exitosamente.")
 
-def leer_empleados(db):
-    cursor.execute("SELECT * FROM Empleado")
-    empleados = cursor.fetchall()
-    for emp in empleados:
-        print(emp)
+def leer_empleados():
+    empleado_id = int(input("ID del empleado a consultar: "))
+    empleado = Empleado.leer(db, empleado_id)
+    if empleado:
+        print("Datos del empleado:", empleado)
+    else:
+        print("Empleado no encontrado.")
 
-def actualizar_empleado(db):
+def actualizar_empleado():
     empleado_id = int(input("ID del empleado a actualizar: "))
-    nombre = input("Nuevo nombre: ")
-    salario = float(input("Nuevo salario: "))
-    sql = "UPDATE Empleado SET nombre = %s, salario = %s WHERE id = %s"
-    valores = (nombre, salario, empleado_id)
-    cursor.execute(sql, valores)
-    conexion.commit()
-    print("Empleado actualizado con éxito.")
+    empleado = Empleado.leer(db, empleado_id)
+    if empleado:
+        id = input("ID:")
+        nombre = input("Nombre: ")
+        fecha_contrato = input("Fecha de contrato (YYYY-MM-DD): ")
+        salario = float(input("Salario: "))
+        correo = input("Correo: ")
+        telefono = input("Teléfono: ")
+        direccion = input("Dirección: ")
+        id_tipo_empleado = int(input("ID Tipo Empleado: "))
+        rut = input("RUT: ")
+        fecha_nac = input("Fecha de nacimiento (YYYY-MM-DD): ")
+        password = input("Contraseña: ")
+        id_rol = int(input("ID Rol: "))
+        id_tipo = int(input("ID Tipo: "))
+        
+        empleado = Empleado(empleado_id, nombre, fecha_contrato, salario, correo, telefono, direccion, id_tipo_empleado, rut, fecha_nac, password, id_rol, id_tipo)
+        empleado.actualizar(db)
+        print("Empleado actualizado exitosamente.")
+    else:
+        print("Empleado no encontrado.")
 
-def eliminar_empleado(db):
+def eliminar_empleado():
     empleado_id = int(input("ID del empleado a eliminar: "))
-    sql = "DELETE FROM Empleado WHERE id = %s"
-    valores = (empleado_id,)
-    cursor.execute(sql, valores)
-    conexion.commit()
-    print("Empleado eliminado con éxito.")
+    Empleado.eliminar(db, empleado_id)
+    print("Empleado eliminado exitosamente.")
 
 # Funciones CRUD para la tabla Tipo_empleado
 def crear_tipo_empleado(db):
@@ -207,6 +227,29 @@ def eliminar_registro_tiempo(db):
     print("Registro de tiempo eliminado con éxito.")
 
 # Submenús para cada tabla
+def submenu_empleado():
+    while True:
+        print("\n--- Menú Empleado ---")
+        print("1. Crear Empleado")
+        print("2. Leer Empleados")
+        print("3. Actualizar Empleado")
+        print("4. Eliminar Empleado")
+        print("5. Volver al menú principal")
+        opcion = input("Selecciona una opción: ")
+        
+        if opcion == "1":
+            crear_empleado()
+        elif opcion == "2":
+            leer_empleados()
+        elif opcion == "3":
+            actualizar_empleado()
+        elif opcion == "4":
+            eliminar_empleado()
+        elif opcion == "5":
+            break
+        else:
+            print("Opción inválida.")
+
 def submenu_tipo_empleado():
     while True:
         print("\n--- Menú Tipo Empleado ---")

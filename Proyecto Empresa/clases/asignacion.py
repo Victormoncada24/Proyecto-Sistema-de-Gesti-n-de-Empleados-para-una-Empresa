@@ -1,3 +1,6 @@
+import mysql.connector
+from conn import DatabaseConnection
+
 class Asignacion:
     def __init__(self, id, id_departamento, id_empleado):
         self.id = id

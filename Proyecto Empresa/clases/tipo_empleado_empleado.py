@@ -1,3 +1,4 @@
+from conn import DatabaseConnection
 import tipo_empleado
 
 class TipoEmpleadoEmp:

@@ -14,4 +14,4 @@ class DatabaseConnection:
         self.connection.commit()
 
     def close(self):
-        self.connection.close()
+        self.connection.close()     
