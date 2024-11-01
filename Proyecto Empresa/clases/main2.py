@@ -25,23 +25,22 @@ def crear_empleado():
     empleado = Empleado(nombre, fecha_contrato, salario, correo, telefono, direccion, id_tipo_empleado, rut, fecha_nac, password, id_rol)
     empleado.insertar(db)
     print("Empleado agregado exitosamente.")
-    db.close()
+    pass
 
 def leer_empleados():
     empleado_id = int(input("ID del empleado a consultar: "))
     empleado = Empleado.leer(db, empleado_id)
     if empleado:
         print("Datos del empleado:", empleado)
-        db.close()
+        pass
     else:
-        print("Empleado no encontrado.")
-        db.close()
+        print("Empleado no encontrado volviendo al menú anterior...")
+        pass
 
 def actualizar_empleado():
     empleado_id = int(input("ID del empleado a actualizar: "))
     empleado = Empleado.leer(db, empleado_id)
     if empleado:
-        id = input("ID:")
         nombre = input("Nombre: ")
         fecha_contrato = input("Fecha de contrato (YYYY-MM-DD): ")
         salario = float(input("Salario: "))
@@ -57,86 +56,95 @@ def actualizar_empleado():
         empleado = Empleado(empleado_id, nombre, fecha_contrato, salario, correo, telefono, direccion, id_tipo_empleado, rut, fecha_nac, password, id_rol)
         empleado.actualizar(db)
         print("Empleado actualizado exitosamente.")
-        db.close()
+        pass
     else:
-        print("Empleado no encontrado.")
-        db.close()
+        print("Empleado no encontrado volviendo al menú anterior...")
+        pass
 
 def eliminar_empleado():
     empleado_id = int(input("ID del empleado a eliminar: "))
     Empleado.eliminar(db, empleado_id)
     print("Empleado eliminado exitosamente.")
-    db.close()
+    pass
 
 # Funciones CRUD para la tabla Tipo_Empleado
 def crear_tipo_empleado():
-    tipo = input("Tipo de empleado: ")
-    sql = "INSERT INTO Tipo_empleado (tipo) VALUES (%s)"
-    cursor.execute(sql, (tipo,))
-    conexion.commit()
+    tipo = input("Nombre:")
+
+    tipo = TipoEmpleado(nombre)
+    tipo.insertar(db)
     print("Tipo de empleado creado con éxito.")
-    db.close()
+    pass
 
 def leer_tipo_empleado():
-    cursor.execute("SELECT * FROM Tipo_empleado")
-    tipos = cursor.fetchall()
-    for tipo in tipos:
-        print(tipo)
-        db.close()
+    tipo_id = int(input("ID del tipo a consultar:"))
+    tipo = TipoEmpleado.leer(db, tipo_id)
+    if tipo:
+        print("Datos del rol:", tipo)
+        pass
+    else:
+        print("Rol no encontrado volviendo al menú anterior...")
+        pass      
 
 def actualizar_tipo_empleado():
-    tipo_id = int(input("ID del tipo de empleado a actualizar: "))
-    nuevo_tipo = input("Nuevo tipo de empleado: ")
-    sql = "UPDATE Tipo_empleado SET tipo = %s WHERE id = %s"
-    valores = (nuevo_tipo, tipo_id)
-    cursor.execute(sql, valores)
-    conexion.commit()
-    print("Tipo de empleado actualizado con éxito.")
-    db.close()
+    tipo_id = int(input("ID del tipo a actulizar: "))
+    tipo = TipoEmpleado.leer(db, tipo_id)
+    if tipo:
+        tipo = input("Nombre")
+        tipo = TipoEmpleado(nombre)
+        tipo.actualizar(db)
+        print("Tipo de empleado actualizado con éxito.")
+        pass
+    else:
+        print("Tipo no encontrado volviendo al menú anterior...")
+        pass
 
 def eliminar_tipo_empleado():
-    tipo_id = int(input("ID del tipo de empleado a eliminar: "))
-    sql = "DELETE FROM Tipo_empleado WHERE id = %s"
-    cursor.execute(sql, (tipo_id,))
-    conexion.commit()
+    tipo_id = int(input("ID del tipo a eliminar: "))
+    TipoEmpleado.eliminar(db, tipo_id)
     print("Tipo de empleado eliminado con éxito.")
-    db.close()
+    pass
 
 # Funciones CRUD para la tabla Roles
 def crear_rol():
     rol = input("Rol: ")
-    permisos = input("Permisos: ")
-    sql = "INSERT INTO Roles (rol, permisos) VALUES (%s, %s)"
-    cursor.execute(sql, (rol, permisos))
-    conexion.commit()
+    permisos = input("Permisos (GER-EMP o EMP):")
+
+    rol = Rol(rol,permisos)
+    rol.insertar(db)
     print("Rol creado con éxito.")
-    db.close()
+    pass
 
 def leer_roles():
-    cursor.execute("SELECT * FROM Roles")
-    roles = cursor.fetchall()
-    for rol in roles:
-        print(rol)
-        db.close()
+    rol_id = int(input("ID del Rol a consulta: "))
+    rol = Rol.leer(db, rol_id)
+    if rol:
+        print("Datos del rol: ", rol)
+        pass
+    else:
+        print("Rol no encontrado volviendo al menú anterior...")
+        pass
 
 def actualizar_rol():
-    rol_id = int(input("ID del rol a actualizar: "))
-    nuevo_rol = input("Nuevo rol: ")
-    permisos = input("Nuevos permisos: ")
-    sql = "UPDATE Roles SET rol = %s, permisos = %s WHERE id = %s"
-    valores = (nuevo_rol, permisos, rol_id)
-    cursor.execute(sql, valores)
-    conexion.commit()
-    print("Rol actualizado con éxito.")
-    db.close()
+    rol_id = int(input("ID del rol: a actualizar: "))
+    rol = Rol.leer(db, rol_id)
+    if rol:
+        rol = input("Rol:")
+        permisos = input("Permisos (GER-EMP o EMP):")
+
+        rol = Rol(db, rol_id, rol, permisos)
+        rol.actualizar(db)
+        print("Rol actualizado con éxito.")
+        pass
+    else:
+        print("Rol no encontrado volviendo al menú anterior...")
+        pass   
 
 def eliminar_rol():
     rol_id = int(input("ID del rol a eliminar: "))
-    sql = "DELETE FROM Roles WHERE id = %s"
-    cursor.execute(sql, (rol_id,))
-    conexion.commit()
+    Rol.eliminar(db, rol_id)
     print("Rol eliminado con éxito.")
-    db.close()
+    pass
 
 # Funciones CRUD para la tabla Departamento
 def crear_departamento():
@@ -427,5 +435,4 @@ def menu_principal():
 menu_principal()
 
 # Cerrar la conexión
-cursor.close()
-conexion.close()
+db.close()

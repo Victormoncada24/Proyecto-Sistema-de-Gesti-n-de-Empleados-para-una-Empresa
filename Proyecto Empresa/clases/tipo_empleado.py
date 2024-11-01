@@ -7,23 +7,23 @@ class TipoEmpleado:
 
     # Métodos CRUD
     def insertar(self, db):
-        query = "INSERT INTO TipoEmpleado (tipo) VALUES (%s)"
+        query = "INSERT INTO Tipo_Empleado (tipo) VALUES (%s)"
         db.cursor.execute(query, (self.tipo,))
         db.commit()
 
     @staticmethod
     def leer(db, tipo_id):
-        query = "SELECT * FROM TipoEmpleado WHERE id = %s"
+        query = "SELECT * FROM Tipo_Empleado WHERE id = %s"
         db.cursor.execute(query, (tipo_id,))
         return db.cursor.fetchone()
 
     def actualizar(self, db):
-        query = "UPDATE TipoEmpleado SET tipo = %s WHERE id = %s"
+        query = "UPDATE Tipo_Empleado SET tipo = %s WHERE id = %s"
         db.cursor.execute(query, (self.tipo, self.id))
         db.commit()
 
     @staticmethod
     def eliminar(db, tipo_id):
-        query = "DELETE FROM TipoEmpleado WHERE id = %s"
+        query = "DELETE FROM Tipo_Empleado WHERE id = %s"
         db.cursor.execute(query, (tipo_id,))
         db.commit()
