@@ -1,9 +1,11 @@
-from conn import db
 from empleado import Empleado
 #from asignacion import Asignacion
 #from departamento import Departamento
 #from proyecto import Proyecto
 
+from conn import DatabaseConnection
+
+db = DatabaseConnection()
 
 # Funciones CRUD para cada tabla
 
@@ -19,19 +21,22 @@ def crear_empleado():
     fecha_nac = input("Fecha de nacimiento (YYYY-MM-DD): ")
     password = input("Contraseña: ")
     id_rol = int(input("ID Rol: "))
-    id_tipo = int(input("ID Tipo: "))
     
-    empleado = Empleado(nombre, fecha_contrato, salario, correo, telefono, direccion, id_tipo_empleado, rut, fecha_nac, password, id_rol, id_tipo)
+    empleado = Empleado(nombre, fecha_contrato, salario, correo, telefono, direccion, id_tipo_empleado, rut, fecha_nac, password, id_rol)
     empleado.insertar(db)
     print("Empleado agregado exitosamente.")
+    db.close()
 
 def leer_empleados():
     empleado_id = int(input("ID del empleado a consultar: "))
     empleado = Empleado.leer(db, empleado_id)
     if empleado:
         print("Datos del empleado:", empleado)
+        db.close()
     else:
         print("Empleado no encontrado.")
+        db.close()
+
 
 def actualizar_empleado():
     empleado_id = int(input("ID del empleado a actualizar: "))
@@ -49,18 +54,20 @@ def actualizar_empleado():
         fecha_nac = input("Fecha de nacimiento (YYYY-MM-DD): ")
         password = input("Contraseña: ")
         id_rol = int(input("ID Rol: "))
-        id_tipo = int(input("ID Tipo: "))
         
-        empleado = Empleado(empleado_id, nombre, fecha_contrato, salario, correo, telefono, direccion, id_tipo_empleado, rut, fecha_nac, password, id_rol, id_tipo)
+        empleado = Empleado(empleado_id, nombre, fecha_contrato, salario, correo, telefono, direccion, id_tipo_empleado, rut, fecha_nac, password, id_rol)
         empleado.actualizar(db)
         print("Empleado actualizado exitosamente.")
+        db.close()
     else:
         print("Empleado no encontrado.")
+        db.close()
 
 def eliminar_empleado():
     empleado_id = int(input("ID del empleado a eliminar: "))
     Empleado.eliminar(db, empleado_id)
     print("Empleado eliminado exitosamente.")
+    db.close()
 
 # Funciones CRUD para la tabla Tipo_empleado
 def crear_tipo_empleado(db):
