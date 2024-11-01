@@ -1,14 +1,15 @@
-from empleado import Empleado
-#from asignacion import Asignacion
-#from departamento import Departamento
-#from proyecto import Proyecto
+from clases.empleado import Empleado
+from clases.tipo_empleado import TipoEmpleado
+from auxiliar.rol import Rol
+from clases.departamento import Departamento
+from clases.proyecto import Proyecto
+from clases.registro_tiempo import RegistroTiempo
 
-from conn import DatabaseConnection
+from clases.conn import DatabaseConnection
 
 db = DatabaseConnection()
 
-# Funciones CRUD para cada tabla
-
+# Funciones CRUD para tabla Empleado
 def crear_empleado():
     nombre = input("Nombre: ")
     fecha_contrato = input("Fecha de contrato (YYYY-MM-DD): ")
@@ -36,7 +37,6 @@ def leer_empleados():
     else:
         print("Empleado no encontrado.")
         db.close()
-
 
 def actualizar_empleado():
     empleado_id = int(input("ID del empleado a actualizar: "))
@@ -69,21 +69,23 @@ def eliminar_empleado():
     print("Empleado eliminado exitosamente.")
     db.close()
 
-# Funciones CRUD para la tabla Tipo_empleado
-def crear_tipo_empleado(db):
+# Funciones CRUD para la tabla Tipo_Empleado
+def crear_tipo_empleado():
     tipo = input("Tipo de empleado: ")
     sql = "INSERT INTO Tipo_empleado (tipo) VALUES (%s)"
     cursor.execute(sql, (tipo,))
     conexion.commit()
     print("Tipo de empleado creado con éxito.")
+    db.close()
 
-def leer_tipo_empleado(db):
+def leer_tipo_empleado():
     cursor.execute("SELECT * FROM Tipo_empleado")
     tipos = cursor.fetchall()
     for tipo in tipos:
         print(tipo)
+        db.close()
 
-def actualizar_tipo_empleado(db):
+def actualizar_tipo_empleado():
     tipo_id = int(input("ID del tipo de empleado a actualizar: "))
     nuevo_tipo = input("Nuevo tipo de empleado: ")
     sql = "UPDATE Tipo_empleado SET tipo = %s WHERE id = %s"
@@ -91,30 +93,34 @@ def actualizar_tipo_empleado(db):
     cursor.execute(sql, valores)
     conexion.commit()
     print("Tipo de empleado actualizado con éxito.")
+    db.close()
 
-def eliminar_tipo_empleado(db):
+def eliminar_tipo_empleado():
     tipo_id = int(input("ID del tipo de empleado a eliminar: "))
     sql = "DELETE FROM Tipo_empleado WHERE id = %s"
     cursor.execute(sql, (tipo_id,))
     conexion.commit()
     print("Tipo de empleado eliminado con éxito.")
+    db.close()
 
-# Funciones para Roles (similares para las demás tablas como Departamento, Proyecto, etc.)
-def crear_rol(db):
+# Funciones CRUD para la tabla Roles
+def crear_rol():
     rol = input("Rol: ")
     permisos = input("Permisos: ")
     sql = "INSERT INTO Roles (rol, permisos) VALUES (%s, %s)"
     cursor.execute(sql, (rol, permisos))
     conexion.commit()
     print("Rol creado con éxito.")
+    db.close()
 
-def leer_roles(db):
+def leer_roles():
     cursor.execute("SELECT * FROM Roles")
     roles = cursor.fetchall()
     for rol in roles:
         print(rol)
+        db.close()
 
-def actualizar_rol(db):
+def actualizar_rol():
     rol_id = int(input("ID del rol a actualizar: "))
     nuevo_rol = input("Nuevo rol: ")
     permisos = input("Nuevos permisos: ")
@@ -123,29 +129,33 @@ def actualizar_rol(db):
     cursor.execute(sql, valores)
     conexion.commit()
     print("Rol actualizado con éxito.")
+    db.close()
 
-def eliminar_rol(db):
+def eliminar_rol():
     rol_id = int(input("ID del rol a eliminar: "))
     sql = "DELETE FROM Roles WHERE id = %s"
     cursor.execute(sql, (rol_id,))
     conexion.commit()
     print("Rol eliminado con éxito.")
+    db.close()
 
 # Funciones CRUD para la tabla Departamento
-def crear_departamento(db):
+def crear_departamento():
     nombre = input("Nombre del departamento: ")
     sql = "INSERT INTO Departamento (nombre) VALUES (%s)"
     cursor.execute(sql, (nombre,))
     conexion.commit()
     print("Departamento creado con éxito.")
+    db.close()
 
-def leer_departamentos(db):
+def leer_departamentos():
     cursor.execute("SELECT * FROM Departamento")
     departamentos = cursor.fetchall()
     for dept in departamentos:
         print(dept)
+        db.close()
 
-def actualizar_departamento(db):
+def actualizar_departamento():
     dept_id = int(input("ID del departamento a actualizar: "))
     nuevo_nombre = input("Nuevo nombre del departamento: ")
     sql = "UPDATE Departamento SET nombre = %s WHERE id = %s"
@@ -153,16 +163,18 @@ def actualizar_departamento(db):
     cursor.execute(sql, valores)
     conexion.commit()
     print("Departamento actualizado con éxito.")
+    db.close()
 
-def eliminar_departamento(db):
+def eliminar_departamento():
     dept_id = int(input("ID del departamento a eliminar: "))
     sql = "DELETE FROM Departamento WHERE id = %s"
     cursor.execute(sql, (dept_id,))
     conexion.commit()
     print("Departamento eliminado con éxito.")
+    db.close()
 
 # Funciones CRUD para la tabla Proyecto
-def crear_proyecto(db):
+def crear_proyecto():
     nombre = input("Nombre del proyecto: ")
     descripcion = input("Descripción del proyecto: ")
     fecha_inicio = input("Fecha de inicio (YYYY-MM-DD): ")
@@ -172,14 +184,16 @@ def crear_proyecto(db):
     cursor.execute(sql, valores)
     conexion.commit()
     print("Proyecto creado con éxito.")
+    db.close()
 
-def leer_proyectos(db):
+def leer_proyectos():
     cursor.execute("SELECT * FROM Proyecto")
     proyectos = cursor.fetchall()
     for proyecto in proyectos:
         print(proyecto)
+        db.close()
 
-def actualizar_proyecto(db):
+def actualizar_proyecto():
     proyecto_id = int(input("ID del proyecto a actualizar: "))
     nuevo_nombre = input("Nuevo nombre del proyecto: ")
     nueva_descripcion = input("Nueva descripción del proyecto: ")
@@ -188,16 +202,18 @@ def actualizar_proyecto(db):
     cursor.execute(sql, valores)
     conexion.commit()
     print("Proyecto actualizado con éxito.")
+    db.close()
 
-def eliminar_proyecto(db):
+def eliminar_proyecto():
     proyecto_id = int(input("ID del proyecto a eliminar: "))
     sql = "DELETE FROM Proyecto WHERE id = %s"
     cursor.execute(sql, (proyecto_id,))
     conexion.commit()
     print("Proyecto eliminado con éxito.")
+    db.close()
 
 # Funciones CRUD para la tabla Registro_Tiempo
-def crear_registro_tiempo(db):
+def crear_registro_tiempo():
     id_empleado = int(input("ID del empleado: "))
     fecha = input("Fecha (YYYY-MM-DD): ")
     cantidad_horas = int(input("Cantidad de horas: "))
@@ -209,14 +225,16 @@ def crear_registro_tiempo(db):
     cursor.execute(sql, valores)
     conexion.commit()
     print("Registro de tiempo creado con éxito.")
+    db.close()
 
-def leer_registros_tiempo(db):
+def leer_registros_tiempo():
     cursor.execute("SELECT * FROM Registro_Tiempo")
     registros = cursor.fetchall()
     for registro in registros:
         print(registro)
+        db.close()
 
-def actualizar_registro_tiempo(db):
+def actualizar_registro_tiempo():
     registro_id = int(input("ID del registro de tiempo a actualizar: "))
     nueva_cantidad_horas = int(input("Nueva cantidad de horas: "))
     nueva_descripcion = input("Nueva descripción: ")
@@ -225,13 +243,15 @@ def actualizar_registro_tiempo(db):
     cursor.execute(sql, valores)
     conexion.commit()
     print("Registro de tiempo actualizado con éxito.")
+    db.close()
 
-def eliminar_registro_tiempo(db):
+def eliminar_registro_tiempo():
     registro_id = int(input("ID del registro de tiempo a eliminar: "))
     sql = "DELETE FROM Registro_Tiempo WHERE id = %s"
     cursor.execute(sql, (registro_id,))
     conexion.commit()
     print("Registro de tiempo eliminado con éxito.")
+    db.close()
 
 # Submenús para cada tabla
 def submenu_empleado():

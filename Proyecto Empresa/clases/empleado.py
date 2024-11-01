@@ -17,8 +17,8 @@ class Empleado:
 
     # Métodos CRUD
     def insertar(self, db):
-        query = """INSERT INTO Empleado (nombre, fecha_contrato, salario, correo, telefono, direccion, id_tipo_empleado, rut, fecha_nac, password, id_rol, id_tipo)
-                   VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
+        query = """INSERT INTO Empleado (nombre, fecha_contrato, salario, correo, telefono, direccion, id_tipo_empleado, rut, fecha_nac, password, id_rol)
+                   VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"""
         values = (self.nombre, self.fecha_contrato, self.salario, self.correo, self.telefono, self.direccion, self.id_tipo_empleado, self.rut, self.fecha_nac, self.password, self.id_rol)
         db.cursor.execute(query, values)
         db.commit()
