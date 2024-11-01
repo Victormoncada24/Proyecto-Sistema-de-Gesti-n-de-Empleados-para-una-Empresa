@@ -21,7 +21,7 @@ def crear_empleado():
     id_rol = int(input("ID Rol: "))
     id_tipo = int(input("ID Tipo: "))
     
-    empleado = Empleado(id, nombre, fecha_contrato, salario, correo, telefono, direccion, id_tipo_empleado, rut, fecha_nac, password, id_rol, id_tipo)
+    empleado = Empleado(nombre, fecha_contrato, salario, correo, telefono, direccion, id_tipo_empleado, rut, fecha_nac, password, id_rol, id_tipo)
     empleado.insertar(db)
     print("Empleado agregado exitosamente.")
 
