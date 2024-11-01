@@ -1,10 +1,8 @@
-from conn import DatabaseConnection
+from conn import db
 from empleado import Empleado
 #from asignacion import Asignacion
 #from departamento import Departamento
 #from proyecto import Proyecto
-
-db = DatabaseConnection
 
 
 # Funciones CRUD para cada tabla
