@@ -1,4 +1,3 @@
-from conn import DatabaseConnection
 import proyecto,empleado
 
 class ProyectoEmpleado:

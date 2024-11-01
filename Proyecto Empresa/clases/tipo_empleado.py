@@ -1,5 +1,5 @@
 from conn import DatabaseConnection
-
+db = DatabaseConnection
 class TipoEmpleado:
     def __init__(self, id, tipo):
         self.id = id

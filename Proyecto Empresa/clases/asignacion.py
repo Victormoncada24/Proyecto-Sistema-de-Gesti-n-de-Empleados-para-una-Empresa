@@ -1,4 +1,3 @@
-import mysql.connector
 from conn import DatabaseConnection
 
 class Asignacion:
